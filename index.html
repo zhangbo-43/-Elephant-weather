@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大象天气</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/ali_icon.css">
+    <script src="./js/jquery-1.12.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/CNDate.js"></script>
+    <script src="./js/art-template.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/index.js"></script>
+    <script id="wtTemplate" type="text/html">
+        <ul>
+            <% for(var i=0; i< weather.length; i++){ %>            <li>
+                <p class="date"><%= weather[i].date %></p>
+                <p class="week"><%= weather[i].week %></p>
+                <p class="pic">
+                    <img src="<%= weather[i].img_url %>">
+                </p>
+                <p class="des"><%= weather[i].des %></p>
+                <p class="wind"><%= weather[i].wind %></p>
+            </li>
+            <% } %>
+        </ul>
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">大象天气</div>
+        <div class="nav">
+            <ul>
+                <li>首页</li>
+                <li>空气质量</li>
+                <li class="current">国内天气</li>
+                <li>国际天气</li>
+                <li>关注的城市</li>
+            </ul>
+        </div>
+    </div>
+    <div class="containt">
+        <div class="city">
+            <div>
+                <span class="city_name" cNo="101180101">郑州</span>
+                <span class="city_change">[切换]</span>
+            </div>
+            <select id="selCity" class="city_list">
+                <option value="101180101">郑州</option>
+                <option value="101010100">北京</option>
+                <option value="101020100">上海</option>
+                <option value="101050101">哈尔滨</option>
+                <option value="101310201">三亚</option>
+                <option value="101290101">昆明</option>
+                <option value="101280101">广州</option>
+                <option value="101130101">乌鲁木齐</option>
+            </select>
+        </div>
+        <div class="weather">
+            <div class="w_today">
+                <div class="w_base">
+                    <span class="temp">18</span>
+                    <i></i>
+                    <span class="w_logo">
+                        <img src="./images/dayu.png" alt="">
+                    </span>
+                </div>
+                <div class="w_date"></div>
+                <div class="w_week"></div>
+                <div class="w_wind iconfont icon-feng">
+                    <span class="w_direct">西南风</span>
+                    <span class="w_power"">3-5级</span>
+                    <span class="humidity iconfont icon-app_icons--2">35</span>
+                </div>
+                <div class="w_aqi iconfont icon-app_icons--">
+                    <span>空气指数:</span><span class="aqi_num">98</span>
+                    <span class="aqi_des">良</span>
+                </div>
+                <div class="w_pm25 iconfont icon-PM">
+                    <span>空气PM2.5指数:</span><span class="pm25">54</span>
+                </div>
+                <div class="share">
+                    中国天气通发布                    
+                    <div>
+                        <span class="iconfont icon-weibo"></span>
+                        <span class="iconfont icon-qq"></span>
+                        <span class="iconfont icon-weixin"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="w_futur">
+                <div class="w_list">
+                    <!-- <ul>
+                        <li>
+                            <p class="date">11-4</p>
+                            <p class="week">星期三</p>
+                            <p class="pic">
+                                <img src="./images/qing.png" alt="" srcset="">
+                            </p>
+                            <p class="des">晴</p>
+                            <p class="wind">南风3-4级</p>
+                        </li>                                    
+                    </ul> -->
+                </div>
+                <div class="line_chart">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function callback(data){ 
+        var wt = wtFormat(data);
+        rendFuture(wt);
+        rendToday(wt);
+        rendLineChart(wt);
+    }
+    function request(){
+        var code = $('.city_name').attr('cNo');
+        console.log(code);
+        $.ajax({
+            type: 'get',
+            url: 'https://cdn.weather.hao.360.cn/sed_api_weather_info.php?code=' + code,
+            dataType: 'jsonp',
+            success: function(res){}
+        });
+    }
+    $(function(){        
+        request();
+        $('#selCity').on('change',function(){
+            var code = $('.city_name').attr('cNo');
+            request();
+        })
+    })
+</script>
+</html>
+
+<!-- https://cdn.weather.hao.360.cn/sed_api_weather_info.php -->

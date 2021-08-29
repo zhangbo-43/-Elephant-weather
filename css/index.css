@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+ul{
+    list-style: none;
+}
+.header{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;    
+    justify-content: space-between;
+}
+.header .logo{
+    flex: 1;
+    width: 200px;
+    height: 80px;
+    margin-left: 50px;
+    padding-left: 60px;
+    background: url(../images/logo.jpg) no-repeat left center;
+    line-height: 80px;
+    font-size: 36px;
+    color: rgb(32, 141, 209);
+    font-weight: 500;
+}
+.header .nav{
+    flex: 3;
+}
+.header .nav li{
+    float: left;
+    font-size: 18px;
+    padding: 0 30px;
+    color: #666;
+}
+.header .nav li.current{
+    color: #000;
+    font-weight: 700;
+}
+.containt{
+    width: 100%;
+    height: 550px;
+    background: url(../images/bg.png) no-repeat center center;
+}
+.city{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 100px;
+    color: #fff;
+}
+.city .city_name{
+    font-size: 28px;
+    background-color: transparent;
+}
+.city .city_change{
+    cursor: pointer;
+}
+.city .city_list{
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    display: none;
+}
+/* 天气面板 */
+.weather{
+    display: flex;
+    justify-content: space-around;
+}
+/* 当日天气面板 */
+.w_today{
+    flex: 3;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: #fff;
+    text-align: center;
+}
+.w_today .w_base{
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: relative;
+}
+.w_today .w_base .temp{
+    font-size: 64px;
+}
+.w_today .w_base i{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    position: absolute;
+    top: 32px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+.w_today .w_base .w_logo{
+    margin-left: 40px;
+}
+.w_today .w_base .w_logo img{
+    width: 48px;
+    height: 48px;
+}
+.w_today div{
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+}
+.w_wind span, .w_aqi span, .w_pm25 span{
+    padding: 3px 0px 3px 10px;
+}
+.w_aqi .aqi_des{
+    margin-left: 10px;
+    padding: 3px 10px;
+    /* 空气质量 优 */
+    /* background-color: #1fd71c; */
+    /* 良 */
+    background-color: #f2c300; 
+    /* 轻度污染 */
+    background-color: #ffb973;
+    /* 中度污染 */
+    background-color: #ff7373;
+    /* 重度污染 */
+    background-color: #af7373;
+}
+.w_wind .humidity{
+    padding-left: 20px;
+}
+.w_today .share{
+    margin-top: 40px;
+    color: #ddd;
+}
+
+/* 未来5天 天气 */
+.w_futur{
+    flex: 9;
+    position: relative;
+}
+.w_futur li{
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 450px;
+    padding-top: 10px;
+    background-color: rgba(255,255,255,0.1);
+    margin-left: 2px;
+}
+.w_futur li:hover{
+    background-color: rgba(255,255,255,0.15);
+}
+.w_futur p{
+    width: 100%;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+.w_futur p.pic img{
+    width: 36px;
+    height: 36px;
+}
+.w_futur .wind{
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+}
+/* 气温折线图 */
+.w_futur .line_chart{
+    width: 600px;
+    height: 200px;
+    position: absolute;
+    top: 160px;
+    left: 5px;
+}
